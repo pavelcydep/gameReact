@@ -3,15 +3,16 @@ import './Square.css';
 export const Square=(props)=> {
 
 
-    const [state,setState] = React.useState({value: null});
+   
    
       return (
         <button className="square"
          
-        onClick={() => setState({value: 'X'})}
+        onClick={props.onClick}
       >
-        {state.value}
+        {props.value}
         </button>
       );
     
   }
+ 

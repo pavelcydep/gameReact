@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import './Board.css';
 import {Square} from '../Square/Square';
 export const Board=(props)=>  {
-    const renderSquare=(i)=> {
-      return <Square value={i} />;
+  const [state,setState] = React.useState({
+    squares: Array(9).fill(null),
+    xIsNext: true
+  });
+  
+  const handleClick=(i)=> {
+      const squares = state.squares.slice();
+      squares[i] = state.xIsNext ? 'X' : '0';
+      setState({squares: squares,xIsNext: !state.xIsNext,});
     }
-  
-    
       const status = 'Next player: X';
-  
+      const renderSquare=(i)=> {
+        return <Square 
+        value={state.squares[i]}
+        onClick={()=>handleClick(i)}
+        />;
+      }
       return (
         <div>
           <div className="status">{status}</div>
